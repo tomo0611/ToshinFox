@@ -1,0 +1,29 @@
+{
+
+    "manifest_version": 2,
+    "name": "ToshinFox",
+    "version": "8.1b",
+    "description": "Help your study with Firefox, saying goodbye Internet Explorer",
+    "icons": {
+        "48": "icons/ic_main.png"
+    },
+    "permissions": [
+        "*://*.toshin.com/*",
+        "notifications",
+        "webRequest",
+        "webRequestBlocking"
+    ],
+    "content_scripts": [{
+        "matches": ["*://*.toshin.com/*"],
+        "js": ["main.js"]
+    }],
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "applications": {
+        "gecko": {
+            "id": "tomo0611@hotmail.com"
+        }
+    },
+    "content_security_policy": "script-src 'self' https://shaka-player-demo.appspot.com https://code.jquery.com https://cdn.rawgit.com https://*.gstatic.com https://fonts.googleapis.com; object-src 'self'"
+}

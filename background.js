@@ -47,7 +47,7 @@ function listener(details) {
         } else if(str.indexOf("navigator.userAgent" != -1)&&details.url=="https://pos.toshin.com/JKMR/Student2/StdDashBord/DashBord") {
             str = str.replace("navigator.userAgent;","\"Android\";\nfnRedirectSmartDevice2();");
         } else {
-            str = str.replace("onclick='playerready_window_open", '');
+            str = str.replace("onclick='playerready_window_open", "onclick='document.fdata.method=\"post\";document.fdata.action=\"./PlayerSelector.aspx\";document.fdata.submit();'");
             str = str.replace("<a id='asd'", "<a id='asd' target='_blank' rel='noopener noreferrer'");
             str = str.replace("function playerready_window_open()", "function playerready_window_open(){} function test()");
             str = str.replace("document.fdata.target = \"window_name\";", '');
@@ -68,6 +68,7 @@ browser.webRequest.onHeadersReceived.addListener(
         urls: [
             "https://pos2.toshin.com/VODPAS/PlayerSelector5old/PlayerSelector.aspx*",
             "https://pos2.toshin.com/VODPAS/PlayerSelector5/PlayerSelector.aspx*",
+            "https://pos2.toshin.com/VODPAS/PlayerSelector5pc/PlayerSelector.aspx*",
             "https://pos2.toshin.com/openwith*",
             "https://pos.toshin.com/JKMR/Student2/StdKozaJuko/Notes?RenshoCnt=*",
             "https://pos.toshin.com/JKMR/Student2/StdKozaJuko/Start",
@@ -90,7 +91,11 @@ function rewriteUserAgentHeader(e) {
 }
 
 browser.webRequest.onBeforeSendHeaders.addListener(
-    rewriteUserAgentHeader, { urls: ["https://pos2.toshin.com/VODPAS/PlayerSelector5old/PlayerSelector.aspx*", "https://pos2.toshin.com/VODPAS/PlayerSelector5/PlayerSelector.aspx*"] }, ["blocking", "requestHeaders"]
+    rewriteUserAgentHeader, { urls: [
+        "https://pos2.toshin.com/VODPAS/PlayerSelector5old/PlayerSelector.aspx*",
+        "https://pos2.toshin.com/VODPAS/PlayerSelector5/PlayerSelector.aspx*",
+        "https://pos2.toshin.com/VODPAS/PlayerSelector5pc/PlayerSelector.aspx*"
+    ] }, ["blocking", "requestHeaders"]
 );
 
 function notify(message) {

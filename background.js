@@ -93,6 +93,51 @@ browser.webRequest.onHeadersReceived.addListener(
     }, ["blocking", "responseHeaders"]
 );
 
+function listenerForJS(details) {
+    console.log("Loading: " + details.url);
+
+    let filter = browser.webRequest.filterResponseData(details.requestId);
+    let decoder = new TextDecoder("utf-8");
+    let encoder = new TextEncoder();
+
+    let data = [];
+
+    filter.onstop = event => {
+        console.log(event);
+    }
+
+    filter.ondata = event => {
+        data.push(event.data);
+        console.log(event.data);
+    };
+
+    filter.onstop = event => {
+        let str = "";
+        if (data.length == 1) {
+            str = decoder.decode(data[0]);
+        } else {
+            for (let i = 0; i < data.length; i++) {
+                let stream = (i == data.length - 1) ? false : true;
+                str += decoder.decode(data[i], { stream });
+            }
+        }
+        str = str.replace(/alert\("連続クリックはお控えください"\);/g,"console.log(\"Popup was removed! hahaha\")");
+        console.log(str);
+        filter.write(encoder.encode(str));
+        filter.close();
+    };
+
+    return {};
+}
+
+browser.webRequest.onHeadersReceived.addListener(
+    listenerForJS, {
+        urls: [
+            "https://pos.toshin.com/JKMR/Student1/js/Common.js"
+        ]
+    }, ["blocking", "responseHeaders"]
+);
+
 function rewriteUserAgentHeader(e) {
     e.requestHeaders.forEach(function(header) {
         if (header.name.toLowerCase() == "user-agent") {

@@ -28,6 +28,7 @@ WindowsだけではなくMac、Linuxでの受講を可能にします。
 
 ## 便利なリンク
 
+- [動作確認用ページ](https://pos.toshin.com/DRM2/Demo/OneMinNews009.aspx)
 - [Firefoxで署名されていない拡張を入れる->未署名のアドオンを有効にする](https://developer.mozilla.org/ja/docs/Mozilla/Add-ons/WebExtensions/Packaging_and_installation)
 
 ## バグ報告

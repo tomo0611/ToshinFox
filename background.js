@@ -61,7 +61,7 @@ function listener(details) {
             str = str.replace("function playerready_window_open()", "function playerready_window_open(){} function test()");
             str = str.replace("document.fdata.target = \"window_name\";", '');
             str = str.replace(/class="movie"/g, "class=\"\"");
-            str = str.replace("<iframe id=\"ifViewer\" scrolling=\"no\" frameborder=\"0\" allowtransparency=\"true\" name=\"ifViewer\">", "<iframe id=\"ifViewer\" scrolling=\"no\" frameborder=\"0\" allowtransparency=\"true\" name=\"ifViewer\" allowfullscreen=\"true\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" style=\"height:350px\">")
+            str = str.replace("<iframe id=\"ifViewer\"", "<iframe id=\"ifViewer\" style=\"height: 360px;\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\"")
             str = str.replace(".movie_area .movie{", ".movie_area .movie{} .test{");
         }
         console.log(str);

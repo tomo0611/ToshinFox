@@ -55,6 +55,8 @@ function listener(details) {
         } else if(details.url.includes("https://pos.toshin.com/SDBJ/dashboard.do")){
             // Support for VOD (SDBJ)
             str = str.replace(/<iframe src/g,"<iframe allowfullscreen=\"allowfullscreen\" src");
+        } else if(details.url.includes("https://pos2.toshin.com/RBT2/RBT_Student/Js/training/BkotTrainingProcess.js")){
+            str = str.replace(/this._waitTimer.setMS\(this._autoNextQuestionTime \* 1000\);/g, "this._waitTimer.setMS(100);");
         } else {
             str = str.replace("onclick='playerready_window_open", "onclick='document.fdata.method=\"post\";document.fdata.action=\"./PlayerSelector.aspx\";document.fdata.submit();'");
             str = str.replace("<a id='asd'", "<a id='asd' target='_blank' rel='noopener noreferrer'");
@@ -87,7 +89,8 @@ browser.webRequest.onHeadersReceived.addListener(
             "https://pos.toshin.com/JKMR/Student2/StdDashBord/DashBord",
             "https://pos.toshin.com/JKMR/Student1/StdDashBord/Index",
             "https://pos.toshin.com/SDBJ/dashboard/*.jsp*",
-            "https://pos.toshin.com/SDBJ/dashboard.do*"
+            "https://pos.toshin.com/SDBJ/dashboard.do*",
+            "https://pos2.toshin.com/RBT2/RBT_Student/Js/training/BkotTrainingProcess.js*"
             // "https://pos.toshin.com/SDBJ/th_dashboard/THmidProcessSP.jsp?SSO_Token=*"
         ]
     }, ["blocking", "responseHeaders"]

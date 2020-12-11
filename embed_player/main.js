@@ -46,7 +46,7 @@ function initApp(url_param) {
     const contentsinfo = decrypt(validdtm, param_list['contentsinfo']);
     console.log("contentsinfo " + contentsinfo);
     const sidecutfilter_yn = param_list['sidecutfilter_yn'];
-    const url_2 = decrypt(validdtm, param_list['url_2']);
+    const url_2 = decrypt(validdtm, param_list['url_2']).replace("WV/300","WV/800");
     console.log("url_2 " + url_2);
     const url = decrypt(validdtm, param_list['url']);
     const url_normalspeed = decrypt(validdtm, param_list['url_normalspeed']);

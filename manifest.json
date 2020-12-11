@@ -2,7 +2,7 @@
 
     "manifest_version": 2,
     "name": "ToshinFox",
-    "version": "9.3b",
+    "version": "9.5b",
     "description": "Help your study with Firefox, saying goodbye Internet Explorer",
     "icons": {
         "48": "icons/ic_main.png"

@@ -153,7 +153,8 @@ function listenerForJS(details) {
 browser.webRequest.onHeadersReceived.addListener(
     listenerForJS, {
         urls: [
-            "https://pos.toshin.com/JKMR/Student1/js/Common.js"
+            "https://pos.toshin.com/JKMR/Student1/js/Common.js",
+            "https://pos.toshin.com/JKMR/Student2/js/Common.js"
         ]
     }, ["blocking", "responseHeaders"]
 );

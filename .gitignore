@@ -1,3 +1,4 @@
 # Exclude Builds
 builds/
 *.zip
+*.xpi

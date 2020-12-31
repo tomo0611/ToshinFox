@@ -90,6 +90,10 @@ function listener(details) {
                     str = str.replace(result[i],"<a href=\"https://www.ei-navi.jp/dictionary/content/"+word+"/#word_detail\" target=\"_blank\"><span>"+word+"</span></a>");
                 }
             }
+        } else if(details.url == "https://olt.toshin.com/OLT/Student4_R/Student/OALT_Test.aspx"){
+            str = str.replace("if (obj[i].checked == true) {","if (obj[i].parentElement.className==\"checked\") {");
+        } else if(details.url.includes("https://olt.toshin.com/OLT/Student4_R/Student/OALT_OALTConfirmation.aspx")){
+            str = str.replace("var winHandle = window.open(sTestQuery, 'fs', 'fullscreen=yes,menubar=no,status=no,toolbar=no,scrollbars=yes');","var winHandle = window.open(sTestQuery, 'fs', 'fullscreen=no,menubar=yes,location=yes,status=yes,toolbar=yes,scrollbars=yes,resizable=yes');");
         } else {
             str = str.replace("onclick='playerready_window_open", "onclick='document.fdata.method=\"post\";document.fdata.action=\"./PlayerSelector.aspx\";document.fdata.submit();'");
             str = str.replace("<a id='asd'", "<a id='asd' target='_blank' rel='noopener noreferrer'");
@@ -127,7 +131,9 @@ browser.webRequest.onHeadersReceived.addListener(
             "https://pos2.toshin.com/RBT2/RBT_Student/WebHandlers/TrainingQuestionRequest.ashx?qn=*",
             "https://pos2.toshin.com/RBT2/RBT_Student/Page/Student/TrainingResult.aspx",
             "https://pos.toshin.com/JKMR/Student2/StdKobetsuJukoYoyaku/KosuSelect",
-            "https://pos.toshin.com/KKS/KKS1/Page/Design/KozaInfo.aspx?KozaCode=*"
+            "https://pos.toshin.com/KKS/KKS1/Page/Design/KozaInfo.aspx?KozaCode=*",
+            "https://olt.toshin.com/OLT/Student4_R/Student/OALT_Test.aspx",
+            "https://olt.toshin.com/OLT/Student4_R/Student/OALT_OALTConfirmation.aspx*"
             // "https://pos.toshin.com/SDBJ/th_dashboard/THmidProcessSP.jsp?SSO_Token=*"
         ]
     }, ["blocking", "responseHeaders"]

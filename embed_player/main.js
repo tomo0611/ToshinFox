@@ -62,6 +62,8 @@ function initApp(url_param) {
     }
     console.log(c_param_list);
 
+    c_param_list["title"] = decrypt(validdtm, c_param_list['title']);
+    
     var manifestUri = url_2;
     shaka.polyfill.installAll();
     if (shaka.Player.isBrowserSupported()) {
@@ -137,9 +139,9 @@ function initPlayer(ticket, manifestUri, param_list, SSO_TOKEN, validdtm, c_para
     player.load(manifestUri).then(function () {
         console.log('The video has now been loaded!');
         if ('mediaSession' in navigator) {
-            var title = c_param_list["title"] == "" ? c_param_list["title"] : "不明な講座名";
-            var koza_number = c_param_list["kozano"] == "" ? c_param_list["kozano"] : "不明な講数";
-            var koza_code = c_param_list["kozacd"] == "" ? c_param_list["kozacd"] : "不明な講座コード";
+            var title = c_param_list["title"] != "" ? c_param_list["title"] : "不明な講座名";
+            var koza_number = c_param_list["kozano"] != "" ? c_param_list["kozano"] : "不明な講数";
+            var koza_code = c_param_list["kozacd"] != "" ? c_param_list["kozacd"] : "不明な講座コード";
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: title + " (講座番号：" + koza_number + ")",
                 artist: "東進衛星予備校T-Pod君",

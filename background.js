@@ -71,38 +71,48 @@ function listener(details) {
         } else if (details.url.includes("https://pos.toshin.com/SDBJ/dashboard.do")) {
             // Support for VOD (SDBJ)
             str = str.replace(/<iframe src/g, "<iframe allowfullscreen=\"allowfullscreen\" src");
-        } else if (details.url.includes("https://pos.toshin.com/JKMR/Student2/StdJukoYoyakuIchiran")){
-            str = str.replace("userAgent.indexOf('msie') != -1","true");
-        } else if (details.url.includes("https://pos2.toshin.com/RBT2/RBT_Student/Js/training/TrainingPage.js")){
-            str = str.replace("this._modalFrame.show(\"問題を作成中です・・・\", \"trainigForm\");","this._modalFrame.show(\"問題を作成中だゾ！\", trainigForm);");
+        } else if (details.url.includes("https://pos.toshin.com/JKMR/Student2/StdJukoYoyakuIchiran")) {
+            str = str.replace("userAgent.indexOf('msie') != -1", "true");
+        } else if (details.url.includes("https://pos2.toshin.com/RBT2/RBT_Student/Js/training/TrainingPage.js")) {
+            str = str.replace("this._modalFrame.show(\"問題を作成中です・・・\", \"trainigForm\");", "this._modalFrame.show(\"問題を作成中だゾ！\", trainigForm);");
         } else if (details.url.includes("https://pos2.toshin.com/RBT2/RBT_Student/Js/training/BkotTrainingProcess.js")) {
             // str = str.replace(/this._waitTimer.setMS\(this._autoNextQuestionTime \* 1000\);/g, "console.log(this._currentQuestion);if (this._currentQuestion==null){this._waitTimer.setMS(100);}else{if(this._questionList.getItemByNumber(this._currentQuestionNumber)._result==Question.RESULT_INCORRECT){this._waitTimer.setMS(100);}else{this._waitTimer.setMS(1000);}}");
-            str = str.replace(/this.onAnswerCheck\(\);/g,"");
-            str = str.replace("BkotTrainingProcess.C_ANSWER_MODE_CHECK;","BkotTrainingProcess.C_ANSWER_MODE_CHECK; this.onAnswerCheck();")
-            str = str.replace(/this._waitTimer.informTimeout\(\);/g,"console.log(this._currentQuestion._result);if(this._currentQuestion._result==0){console.log(\"正解！！\")}else{console.log(\"不正解\");}if(this._currentQuestion._result==0){this._waitTimer.setMS(50);}else{this._waitTimer.setMS(2000);} this._waitTimer.informTimeout();");
+            str = str.replace(/this.onAnswerCheck\(\);/g, "");
+            str = str.replace("BkotTrainingProcess.C_ANSWER_MODE_CHECK;", "BkotTrainingProcess.C_ANSWER_MODE_CHECK; this.onAnswerCheck();")
+            str = str.replace(/this._waitTimer.informTimeout\(\);/g, "if(this.getIsImmediate()){console.log(this._currentQuestion._result);if(this._currentQuestion._result==0){console.log(\"正解！！\")}else{console.log(\"不正解\");}if(this._currentQuestion._result==0){this._waitTimer.setMS(50);}else{this._waitTimer.setMS(2000);} this._waitTimer.informTimeout();}");
         } else if (details.url.includes("https://pos2.toshin.com/RBT2/RBT_Student/WebHandlers/TrainingQuestionRequest.ashx?qn=")) {
             KosokuMasterXMLData = str;
             console.log(str);
         } else if (details.url.includes("https://pos2.toshin.com/RBT2/RBT_Student/Page/Student/TrainingResult.aspx")) {
             //console.log("this is train result.");
-            var parser = new DOMParser();
-            var xmlDoc = parser.parseFromString(KosokuMasterXMLData, "text/xml");
-            //console.log(str);
-            const result = str.match(/<a href="javascript:void\(window\.open\('Explanation\.aspx\?questionNo=\d{2,6}',''\)\)"><span>問題へ<\/span><\/a>/g);
-            for (var i = 0; i < result.length; i++) {
-                // Question.Q_TYPE_YOKO_SENTAKU1 = 1; Question.Q_TYPE_YOKO_SENTAKU2 = 2; Question.Q_TYPE_YOKO_NYURYOKU = 3;
-                // Question.Q_TYPE_YOKO_DD_TATE = 4; Question.Q_TYPE_YOKO_DD_YOKO = 5; Question.Q_TYPE_YOKO_ANAUME = 6;
-                // Question.Q_TYPE_SENTAKUSHIBETSU = 7; Question.Q_TYPE_TATE_SENTAKU = 8; Question.Q_TYPE_TATE_NYURYOKU = 9;
-                // Question.Q_TYPE_TATE_DD = 10; Question.Q_TYPE_HENKAN_NYURYOKU = 11; 12とかが確認されてるけどなんなんだろ。。
-                // Question.RESULT_CORRECT = 0; 	// 正解
-                // Question.RESULT_INCORRECT = 1; 	// 不正解
-                // Question.RESULT_DONTKNOW = 9; 	// わからない
-                // Question.ANSWER_TYPE_CHOICE = 0; 	// 選択式	
-                // Question.ANSWER_TYPE_DD = 1;        // D&D (たぶんdrop&drag)
-                // Question.ANSWER_TYPE_INPUT = 2; 	// 入力式
-                if (xmlDoc.getElementsByTagName("Question")[i].getElementsByTagName("AnswerType")[0].innerHTML == "0") { // ANSWER_TYPE_CHOICE(選択式)
-                    var word = xmlDoc.getElementsByTagName("QuestionTextList")[i].getElementsByTagName("QuestionText")[0].innerHTML;
-                    str = str.replace(result[i], "<a href=\"https://www.ei-navi.jp/dictionary/content/" + word + "/#word_detail\" target=\"_blank\"><span>" + word + "</span></a>");
+            str = str.replace("if (typeof(oncontextmenu_protect) == 'function') {oncontextmenu_protect();}", "");
+            if (str.includes("Explanation.aspx")) {
+                var parser = new DOMParser();
+                var xmlDoc = parser.parseFromString(KosokuMasterXMLData, "text/xml");
+                //console.log(str);
+                const result = str.match(/<a href="javascript:void\(window\.open\('Explanation\.aspx\?questionNo=\d{2,6}',''\)\)"><span>問題へ<\/span><\/a>/g);
+                for (var i = 0; i < result.length; i++) {
+                    // Question.Q_TYPE_YOKO_SENTAKU1 = 1; Question.Q_TYPE_YOKO_SENTAKU2 = 2; Question.Q_TYPE_YOKO_NYURYOKU = 3;
+                    // Question.Q_TYPE_YOKO_DD_TATE = 4; Question.Q_TYPE_YOKO_DD_YOKO = 5; Question.Q_TYPE_YOKO_ANAUME = 6;
+                    // Question.Q_TYPE_SENTAKUSHIBETSU = 7; Question.Q_TYPE_TATE_SENTAKU = 8; Question.Q_TYPE_TATE_NYURYOKU = 9;
+                    // Question.Q_TYPE_TATE_DD = 10; Question.Q_TYPE_HENKAN_NYURYOKU = 11; 12とかが確認されてるけどなんなんだろ。。
+                    // Question.RESULT_CORRECT = 0; 	// 正解
+                    // Question.RESULT_INCORRECT = 1; 	// 不正解
+                    // Question.RESULT_DONTKNOW = 9; 	// わからない
+                    // Question.ANSWER_TYPE_CHOICE = 0; 	// 選択式	
+                    // Question.ANSWER_TYPE_DD = 1;        // D&D (たぶんdrop&drag)
+                    // Question.ANSWER_TYPE_INPUT = 2; 	// 入力式
+                    if (xmlDoc.getElementsByTagName("Question")[i].getElementsByTagName("AnswerType")[0].innerHTML == "0") { // ANSWER_TYPE_CHOICE(選択式)
+                        var word = xmlDoc.getElementsByTagName("QuestionTextList")[i].getElementsByTagName("QuestionText")[0].innerHTML.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#039;/g, "'");;
+                        console.log(word);
+                        if (word.includes('<span style = "text-decoration : overline">')) {
+                            word = word.match(/>.+?<\/span>/g)[0].replace("</span>", "").substr(1);
+                            var questionNumber = xmlDoc.getElementsByTagName("Question")[i].getElementsByTagName("QuestionNumber")[0].innerHTML;
+                            str = str.replace(result[i], "<a href=\"./Explanation.aspx?questionNo=" + questionNumber + "\" target=\"_blank\"><span>" + word + "</span></a>");
+                        } else {
+                            str = str.replace(result[i], "<a href=\"https://www.ei-navi.jp/dictionary/content/" + word + "/#word_detail\" target=\"_blank\"><span>" + word + "</span></a>");
+                        }
+                    }
                 }
             }
         } else if (details.url == "https://olt.toshin.com/OLT/Student4_R/Student/OALT_Test.aspx" || details.url.includes("https://olt.toshin.com/OLT/Student4_R/Student/OACT_Test.aspx")) {

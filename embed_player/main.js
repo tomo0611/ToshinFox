@@ -80,8 +80,11 @@ function initApp(url_param) {
 
 function initPlayer(ticket, manifestUri, param_list, SSO_TOKEN, validdtm, c_param_list) {
     console.log(manifestUri);
-    var video = document.getElementById('video');
-    var player = new shaka.Player(video);
+    const video = document.getElementById('video');
+    const ui = video['ui'];
+    const controls = ui.getControls();
+    const player = controls.getPlayer();
+
     player.configure({
         drm: {
             servers: {
@@ -95,7 +98,7 @@ function initPlayer(ticket, manifestUri, param_list, SSO_TOKEN, validdtm, c_para
     createButtonV12();
     createButtonV15();
     createButtonV20();
-    var ui = video['ui'];
+    
     var config = {
         controlPanelElements: [
             'play_pause',
@@ -109,14 +112,18 @@ function initPlayer(ticket, manifestUri, param_list, SSO_TOKEN, validdtm, c_para
             'x1.25',
             'x1.5',
             'x2.0',
+            'picture_in_picture',
             'fullscreen',
             'overflow_menu',
         ],
         overflowMenuButtons: [
             'captions',
+            'cast',
             'quality',
             'language',
             'picture_in_picture',
+            'playback_rate',
+            'airplay',
         ],
         seekBarColors: {
             base: 'rgba(255, 255, 255, 0.3)',
@@ -134,6 +141,7 @@ function initPlayer(ticket, manifestUri, param_list, SSO_TOKEN, validdtm, c_para
     };
     ui.configure(config);
     window.player = player;
+    window.ui = ui;
     window.manifestUri = manifestUri;
     player.addEventListener('error', onErrorEvent);
     player.load(manifestUri).then(function () {

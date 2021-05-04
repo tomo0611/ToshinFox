@@ -21,8 +21,8 @@ WindowsだけではなくMacやLinuxでの受講を可能にします。
 - **確認テスト無記入バグ修正**: Firefoxで起こる確認テストや修了テストの未記入バグを直します
 ## ブラウザ&OSの対応
 
-- Windows 10 20H2 : 完全対応
-- Ubuntu 20.04 Desktop : 完全対応
+- Windows 10 21H2 : 完全対応
+- Ubuntu 21.04 Desktop : 完全対応
 - macOS v10.15 Catalina : 完全対応
 
 ## 便利なリンク

@@ -1,8 +1,7 @@
 {
-
     "manifest_version": 2,
     "name": "ToshinFox",
-    "version": "13.1b",
+    "version": "14.0b",
     "description": "Help your study with Firefox, saying goodbye Internet Explorer",
     "icons": {
         "48": "icons/ic_main.png"
@@ -13,17 +12,30 @@
         "webRequest",
         "webRequestBlocking"
     ],
-    "content_scripts": [{
-        "matches": ["*://*.toshin.com/*"],
-        "js": ["main.js"]
-    }],
     "background": {
         "scripts": ["background.js"]
     },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.toshin.com/*"
+            ],
+            "js": [
+                "content_script.js"
+            ],
+            "css": [
+                "./styles/main.css"
+            ],
+            "run_at": "document_end",
+            "match_about_blank": true,
+            "all_frames": true
+        }
+    ],
     "applications": {
         "gecko": {
             "id": "tomo0611@hotmail.com"
         }
     },
-    "content_security_policy": "script-src 'self' https://shaka-player-demo.appspot.com https://code.jquery.com https://cdn.rawgit.com https://*.gstatic.com https://fonts.googleapis.com; object-src 'self'"
+    "web_accessible_resources": ["content_interception.js","scripts/*","styles/*","pages/*"],
+    "content_security_policy": "script-src 'self' https://code.getmdl.io https://ajax.googleapis.com https://shaka-player-demo.appspot.com https://code.jquery.com https://cdn.rawgit.com https://*.gstatic.com https://fonts.googleapis.com; object-src 'self'"
 }

@@ -3,3 +3,4 @@ builds/
 *.zip
 *.xpi
 *.html
+releases/

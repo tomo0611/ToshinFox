@@ -11,8 +11,10 @@ if(url.toLowerCase().includes("https://pos.toshin.com/jkmr/student2/stdkobetsuju
 } else if(url.includes("https://pos2.toshin.com/VODPAS/")){
     console.log("Injecting scripts & styles to PlayerSelector Page...");
     injectScriptsForPlayPage();
+} else if (url.indexOf("https://pos.toshin.com/sso1/ssomenu/sessionerror.html?aspxerrorpath=") != -1) {
+    console.log("Redirecting to LoginPage...");
+    redirectToLoginPage();
 }
-
 
 async function injectScriptsForPlayPage() 
 {
@@ -36,6 +38,10 @@ async function injectScriptsForKosuSelect(){
     await injectScript('scripts/KosuSelect.js');
 }
 
+async function redirectToLoginPage(){
+    browser.runtime.sendMessage({ "title": "セッション情報が破棄されたので再ログインしてください", "msg": "東進学力POSでは個人情報保護の観点より、一定時間操作が無かった場合にセッション情報を破棄しています。" });
+    window.location.href = "https://pos.toshin.com/SSO1/SSOLogin/StudentLogin.aspx";
+}
 
 function injectScript(scriptName) 
 {

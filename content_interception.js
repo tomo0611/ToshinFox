@@ -1,4 +1,4 @@
-if(!window.location.href.endsWith("PlayerSelector.aspx")){
+if(window.location.href.endsWith("/SSO1/SSOMenu/StudentMenu.aspx")){
     document.body.style.border = "5px solid red";
 }
 

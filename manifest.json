@@ -10,7 +10,8 @@
         "*://*.toshin.com/*",
         "notifications",
         "webRequest",
-        "webRequestBlocking"
+        "webRequestBlocking",
+        "storage"
     ],
     "background": {
         "scripts": ["background.js"]
@@ -35,6 +36,10 @@
         "gecko": {
             "id": "tomo0611@hotmail.com"
         }
+    },
+    "options_ui": {
+        "page": "./pages/extension_preferences.html",
+        "browser_style": true
     },
     "web_accessible_resources": ["content_interception.js","scripts/*","styles/*","pages/*"],
     "content_security_policy": "script-src 'self' https://code.getmdl.io https://ajax.googleapis.com https://shaka-player-demo.appspot.com https://code.jquery.com https://cdn.rawgit.com https://*.gstatic.com https://fonts.googleapis.com; object-src 'self'"

@@ -6,8 +6,8 @@ $.ajax({
     type: 'GET',
     statusCode: {
         200: function (data) {
-            console.log(data.responseText);
-            const result = data.responseText.match(/<td nowrap="nowrap" align="Center" valign="Middle">.+?<\/td><td>.+?<\/td>/g);
+            console.log(data);
+            const result = data.match(/<td nowrap="nowrap" align="Center" valign="Middle">.+?<\/td><td>.+?<\/td>/g);
             if (result != null) {
                 var kozaList = {};
                 for (var i = 0; i < result.length; i++) {

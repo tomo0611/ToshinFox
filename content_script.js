@@ -4,7 +4,7 @@ console.log("link -> " + url);
 
 injectScript("content_interception.js");
 
-injectStyleSheet("https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c");
+injectStyleSheet("https://fonts.googleapis.com/css?family=Kosugi+Maru");
 
 if(url.toLowerCase().includes("https://pos.toshin.com/jkmr/student2/stdkobetsujukoyoyaku/kosuselect")){
     injectScriptsForKosuSelect();
@@ -69,6 +69,6 @@ function injectStyleSheet(styleName)
             resolve(true);
         };
         (document.head||document.documentElement).appendChild(s);
-        document.getElementsByTagName("Body")[0].style = "font-family: \"M PLUS Rounded 1c\";";
+        document.getElementsByTagName("Body")[0].style = "font-family: \"Kosugi Maru\";";
     });
 }

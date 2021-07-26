@@ -1,20 +1,7 @@
 
-/* よくある質問 */
-.icn_question {
-    display:none;
-}
-
-/* 2021/06/04現在、東進 Global English Workshopとかいうアホそうなもん */
-#repInfo_ctl02_lbInfo {
-    display:none;
-}
-
-/* スマホ向けのBanner */
-.information_area {
-    display:none;
-}
-
-/* 新着情報 */
-.title_area {
-    display: none;
+/* 受講ページ https://pos.toshin.com/JKMR/Student2/StdKozaJuko/Start */
+.movie_area .movie {
+    margin-top: 15px;
+    padding: 0px;
+    background: none;
 }

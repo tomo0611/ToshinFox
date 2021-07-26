@@ -1,4 +1,6 @@
-document.body.style.border = "5px solid red";
+if(!window.location.href.endsWith("PlayerSelector.aspx")){
+    document.body.style.border = "5px solid red";
+}
 
 function allowFullScreenForiframe(){
     var iframes = document.getElementsByTagName("iframe");

@@ -4,7 +4,7 @@ var debug_do_not_send_watch_log = false;
 
 var gettingItem = browser.storage.sync.get('debug_do_not_send_watch_log');
 gettingItem.then((res) => {
-    debug_do_not_send_watch_log = res.debug_do_not_send_watch_log;
+    debug_do_not_send_watch_log = res.debug_do_not_send_watch_log||false;
 });
 
 function listener(details) {

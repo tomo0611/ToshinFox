@@ -29,7 +29,7 @@ function decrypt(validdtm, d) {
     var encryptedB64 = d;
     var encryptedBytes = Uint8Array.from(atob(encryptedB64), c => c.charCodeAt(0));
     var decryptedBytes = aesCbc.decrypt(encryptedBytes);
-    return aesjs.utils.utf8.fromBytes(decryptedBytes).replace("\r", "").replace("\n", "").replace(/[\u000f]/gu, "");
+    return aesjs.utils.utf8.fromBytes(decryptedBytes).replace("\r", "").replace("\n", "").replace(/[\u000f]/gu, "").replace(/[\u000c]/gu, "").replace(/[\u0003]/gu, "");
 }
 
 function initApp(url_param) {

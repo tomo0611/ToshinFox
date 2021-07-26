@@ -4,7 +4,8 @@ console.log("link -> " + url);
 
 injectScript("content_interception.js");
 
-injectStyleSheet("https://fonts.googleapis.com/css?family=Kosugi+Maru");
+// https://fonts.google.com/?preview.text=%20%E7%94%9F%E5%BE%92%E7%95%AA%E5%8F%B7%EF%BC%9A%20%E5%8F%A4%E6%A9%8B%20%E6%96%87%E4%B9%83(10%2F23)%20%E5%AD%A6%E5%B9%B4%EF%BC%9A%20%E9%AB%98%EF%BC%93%20&preview.text_type=custom&subset=japanese
+injectStyleSheet("https://fonts.googleapis.com/css?family=DotGothic16");
 
 if(url.toLowerCase().includes("https://pos.toshin.com/jkmr/student2/stdkobetsujukoyoyaku/kosuselect")){
     injectScriptsForKosuSelect();
@@ -69,6 +70,6 @@ function injectStyleSheet(styleName)
             resolve(true);
         };
         (document.head||document.documentElement).appendChild(s);
-        document.getElementsByTagName("Body")[0].style = "font-family: \"Kosugi Maru\";";
+        document.getElementsByTagName("Body")[0].style = "font-family: \"DotGothic16\";";
     });
 }

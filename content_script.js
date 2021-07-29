@@ -75,5 +75,15 @@ function injectStyleSheet(styleName, font_name) {
         };
         (document.head || document.documentElement).appendChild(s);
         document.getElementsByTagName("Body")[0].style = "font-family: \"" + font_name + "\";";
+
+        var set = function(c){
+            for(var i=0; i<c.children.length; i++){
+                c.children[0].style.fontFamily = "\"" + font_name + "\"";
+                set(c.children[i]);
+            }
+        }
+
+        set(document);
+
     });
 }

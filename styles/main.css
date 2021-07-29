@@ -5,3 +5,23 @@
     padding: 0px;
     background: none;
 }
+
+.btn_sys_blk input{
+    padding: 8px 15px 7px 2px !important;
+}
+
+.btn_sys_gr input{
+    padding: 8px 15px 7px 2px !important;
+}
+
+.btn_unavailable span, .btn_unavailable input{
+    padding: 8px 0 !important;
+}
+
+.list_area .top_box dl dt.tit_02 {
+    min-height: 50px !important;
+}
+
+.section_table_area{
+    margin: 9px 0 0 !important;
+}

@@ -3,8 +3,7 @@
 // https://test.toshin.com/TEST_2012/JKM/Student/StdKobetsuJukoYoyaku/KosuSelect
 // 大文字小文字区別なし
 
-var kozaid = document.documentElement.innerHTML.match(/<label id=\"LblKozaCode\">.+?<\/label>/g)[0];
-kozaid = kozaid.substring(24, kozaid.length - 8);
+var kozaid = document.getElementById("LblKozaCode").innerText
 
 $.ajax({
     url: 'https://pos.toshin.com/KKS/KKS1/Page/Design/KozaInfo.aspx?KozaCode=' + kozaid + '&Refresh=1',

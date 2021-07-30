@@ -74,16 +74,9 @@ function injectStyleSheet(styleName, font_name) {
             resolve(true);
         };
         (document.head || document.documentElement).appendChild(s);
-        document.getElementsByTagName("Body")[0].style = "font-family: \"" + font_name + "\";";
-
-        var set = function(c){
-            for(var i=0; i<c.children.length; i++){
-                c.children[0].style.fontFamily = "\"" + font_name + "\"";
-                set(c.children[i]);
-            }
+        var elements = document.querySelectorAll('*');
+        for(var i=0;i<elements.length;i++){
+            elements[i].style.fontFamily = "\"" + font_name + "\"";
         }
-
-        set(document);
-
     });
 }

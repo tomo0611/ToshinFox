@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "ToshinFox",
-    "version": "15.1b",
+    "version": "15.2b",
     "description": "Help your study with Firefox, saying goodbye Internet Explorer",
     "icons": {
         "48": "icons/ic_main.png"

@@ -230,7 +230,7 @@ function initPlayer(ticket, manifestUri, param_list, SSO_TOKEN, validdtm, c_para
 function sendRegistViewedContents(param_list, SSO_TOKEN, validdtm, c_param_list){
     $.ajax({
         type: "POST",
-        url: "https://pos2.toshin.com/DRM2/DRM24/Webservice/DRMWebService.asmx",
+        url: "https://pos2.toshin.com/DRM2/DRM25/Webservice/DRMWebService.asmx",
         dataType: "xml",
         contentType: "text/xml;charset=utf-8",
         beforeSend: function (xhr) {

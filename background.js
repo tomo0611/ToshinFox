@@ -87,7 +87,6 @@ function listener(details) {
             console.log("[ToshinFox] Rewrite movie className");
             console.log(str);
             str = str.replaceAll("<div class=\"movie\">","<script>setInterval(function(){$('.movie2 iframe').css('height',  document.getElementById(\"ifViewer\").clientWidth/16*9 + 'px');},500);</script><div class=\"movie2\">");
-
         } else if (str.indexOf("navigator.userAgent" != -1) && details.url == "https://pos.toshin.com/JKMR/Student2/StdDashBord/DashBord") {
             str = str.replace("navigator.userAgent;", "\"Android\";\nfnRedirectSmartDevice2();");
         } else if (details.url.includes("https://pos.toshin.com/KKS/KKS1/Page/Design/KozaInfo.aspx?KozaCode=")) {
@@ -95,7 +94,6 @@ function listener(details) {
         } else if (details.url.includes("https://pos2.toshin.com/RBT2/RBT_Student/Js/training/TrainingPage.js")) {
             str = str.replace("this._modalFrame.show(\"問題を作成中です・・・\", \"trainigForm\");", "this._modalFrame.show(\"問題を作成中だゾ！\", trainigForm);");
         } else if (details.url.includes("https://pos2.toshin.com/RBT2/RBT_Student/Js/training/BkotTrainingProcess.js")) {
-            // str = str.replace(/this._waitTimer.setMS\(this._autoNextQuestionTime \* 1000\);/g, "console.log(this._currentQuestion);if (this._currentQuestion==null){this._waitTimer.setMS(100);}else{if(this._questionList.getItemByNumber(this._currentQuestionNumber)._result==Question.RESULT_INCORRECT){this._waitTimer.setMS(100);}else{this._waitTimer.setMS(1000);}}");
             str = str.replace(/this.onAnswerCheck\(\);/g, "");
             str = str.replace("BkotTrainingProcess.C_ANSWER_MODE_CHECK;", "BkotTrainingProcess.C_ANSWER_MODE_CHECK; this.onAnswerCheck();")
             str = str.replace(/this._waitTimer.informTimeout\(\);/g, "if(this.getIsImmediate()){console.log(this._currentQuestion._result);if(this._currentQuestion._result==0){console.log(\"正解！！\")}else{console.log(\"不正解\");}if(this._currentQuestion._result==0){this._waitTimer.setMS(50);}else{this._waitTimer.setMS(2000);} this._waitTimer.informTimeout();}");

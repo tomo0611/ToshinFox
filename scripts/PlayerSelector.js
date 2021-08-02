@@ -191,10 +191,10 @@ function initPlayer(ticket, manifestUri, param_list, SSO_TOKEN, validdtm, c_para
         console.log('[ShakaPlayer] 動画読み込み完了！');
         if ('mediaSession' in navigator) {
             var title = c_param_list["title"] != "" ? c_param_list["title"] : "不明な講座名";
-            var koza_number = c_param_list["kozano"] != "" ? c_param_list["kozano"] : "不明な講数";
+            var koza_number = c_param_list["kosuno"] != "" ? "第"+c_param_list["kosuno"]+"講" : "不明な講数";
             var koza_code = c_param_list["kozacd"] != "" ? c_param_list["kozacd"] : "不明な講座コード";
             navigator.mediaSession.metadata = new MediaMetadata({
-                title: title + " (講座番号：" + koza_number + ")",
+                title: title + " (" + koza_number + ")",
                 artist: "東進衛星予備校T-Pod君",
                 album: "講座コード：" + koza_code,
                 artwork: [{ src: "https://pos.toshin.com/SSO1/SSOMenu/IMAGES/webclip.png" }]

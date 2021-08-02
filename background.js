@@ -75,6 +75,7 @@ function listener(details) {
                 "<script defer src=\""+shakaPlayerElementsScript+"\"></script>" +
                 "<script defer src=\"https://www.gstatic.com/cv/js/sender/v1/cast_sender.js\"></script>" +
                 "<script type=\"text/javascript\" src=\"https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js\"></script>" +
+                "<style>body {width: 100vw; max-width:100vw; height: 56.25vw; max-height:100vh; background:black;} #video {width: auto; height: 100%;} .video-container {width: 100vw; max-width:100vw; height: 56.25vw; max-height:100vh;}</style>"+
                 "</head><body>" +
                 "<div id=\"error-display\" class=\"hidden\"><div id=\"error-display-close-button\"><p>x</p></div><p id=\"error-display-message\"></p><a id=\"error-display-link\" href=\"#\" target=\"_blank\">エラーコードの詳細</a></div><main class=\"mdl-layout__content\" id=\"main-div\">" +
                 "<div data-shaka-player-container class=\"video-container\" data-shaka-player-cast-receiver-id=\"1BA79154\">" +
@@ -82,6 +83,11 @@ function listener(details) {
                 "<input id=\"initData\" type=\"hidden\" value=\""+d+"\"/>"+
                 "<input id=\"debug_do_not_send_watch_log\" type=\"hidden\" value=\""+debug_do_not_send_watch_log+"\"/>"+
                 "</body></html>";
+        } else if(details.url.indexOf("/StdKozaJuko/Start") != -1){
+            console.log("[ToshinFox] Rewrite movie className");
+            console.log(str);
+            str = str.replaceAll("<div class=\"movie\">","<script>setInterval(function(){$('.movie2 iframe').css('height',  document.getElementById(\"ifViewer\").clientWidth/16*9 + 'px');},500);</script><div class=\"movie2\">");
+
         } else if (str.indexOf("navigator.userAgent" != -1) && details.url == "https://pos.toshin.com/JKMR/Student2/StdDashBord/DashBord") {
             str = str.replace("navigator.userAgent;", "\"Android\";\nfnRedirectSmartDevice2();");
         } else if (details.url.includes("https://pos.toshin.com/KKS/KKS1/Page/Design/KozaInfo.aspx?KozaCode=")) {
@@ -154,6 +160,8 @@ browser.webRequest.onHeadersReceived.addListener(
         "https://pos2.toshin.com/VODPAS/STG/PlayerSelector5/PlayerSelector.aspx*",
         "https://pos2.toshin.com/openwith*",
         "https://pos.toshin.com/JKMR/Student2/StdDashBord/DashBord",
+        "https://test.toshin.com/TEST_2012/JKM/Student/StdKozaJuko/Start",
+        "https://pos.toshin.com/JKMR/Student2/StdKozaJuko/Start",
         "https://pos2.toshin.com/RBT2/RBT_Student/Js/training/TrainingPage.js?*",
         "https://pos2.toshin.com/RBT2/RBT_Student/Js/training/BkotTrainingProcess.js*",
         "https://pos2.toshin.com/RBT2/RBT_Student/WebHandlers/TrainingQuestionRequest.ashx?qn=*",

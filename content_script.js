@@ -20,6 +20,9 @@ if (url.toLowerCase().includes("https://pos.toshin.com/jkmr/student2/stdkobetsuj
 } else if (url.indexOf("https://pos.toshin.com/sso1/ssomenu/sessionerror.html?aspxerrorpath=") != -1) {
     console.log("Redirecting to LoginPage...");
     redirectToLoginPage();
+} else if (url.includes("https://pos.toshin.com/OPSTTS/OPSTTS_Student")){
+    console.log("Injecting scripts Kakomon Page...");
+    injectScriptsForKakomon();
 }
 
 async function injectScriptsForPlayPage() {
@@ -41,6 +44,10 @@ async function injectScriptsForPlayPage() {
 
 async function injectScriptsForKosuSelect() {
     await injectScript('scripts/KosuSelect.js');
+}
+
+async function injectScriptsForKakomon(){
+    await injectScript('scripts/OPSTTS_Student.js');
 }
 
 async function redirectToLoginPage() {

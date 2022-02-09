@@ -138,6 +138,20 @@ function listener(details) {
             str = str.replace("var winHandle = window.open(sTestQuery, 'fs', 'fullscreen=yes,menubar=no,status=no,toolbar=no,scrollbars=yes');", "var winHandle = window.open(sTestQuery, 'fs', 'fullscreen=no,menubar=yes,location=yes,status=yes,toolbar=yes,scrollbars=yes,resizable=yes');");
         } else if (details.url.includes("https://olt.toshin.com/OLT/Student4_R/Student/OACT_OACTConfirmation.aspx")) {
             str = str.replace("var winHandle = window.open(sTestQuery, 'fs', 'fullscreen=yes,menubar=no,location=0,status=no,toolbar=no,scrollbars=yes');", "var winHandle = window.open(sTestQuery, 'fs', 'fullscreen=no,menubar=yes,location=yes,status=yes,toolbar=yes,scrollbars=yes,resizable=yes');")
+        } else if (details.url.includes("https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/EnshuRireki.js")) {
+            str = str.replace("window.open(url, '_blank', 'scrollbars=yes,resizable=yes');","window.open(url, '_blank').focus();")
+            str = str.replace("window.open(this.getAttribute('data-button'), '_blank', 'top=0,left=0,width=' + screen.width + ',height=' + screen.height + ',scrollbars=yes,resizable=yes');","window.open(this.getAttribute('data-button'), '_blank').focus();");
+        } else if (details.url.includes("https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/KekkaShosai.js")){
+            str = str.replace("window.open(url, '_blank', 'scrollbars=yes,resizable=yes');","window.open(url, '_blank').focus();");
+        } else if (details.url.includes("https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/ZentaiRireki.js")){
+            str = str.replace(", 'top=0,left=0,width=1366,height=' + screen.height + ',scrollbars=yes,resizable=yes');",").focus();");
+        } else if (details.url.includes("https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/EnshuKaishi.js")){
+            str = str.replaceAll(", 'top=0,left=0,width=' + screen.width + ',height=' + screen.height + ',scrollbars=yes,resizable=yes');",").focus();");
+            str = str.replace(", 'top=0,left=0,width=1024,height=' + screen.height + ',scrollbars=yes,resizable=yes');",").focus();");
+        } else if (details.url.includes("https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/MondaiKaitoInsatsu.js")){
+            str = str.replace(", 'scrollbars=yes,resizable=yes');",").focus();");
+        } else if (details.url.includes("https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/CommonHeader.js")){
+            str = str.replace(", 'top=0,left=0,width=1024,height=' + screen.height + ',scrollbars=yes,resizable=yes');",").focus();");
         } else {
             str = str.replace("onclick='playerready_window_open", "onload='document.fdata.method=\"post\";document.fdata.action=\"./PlayerSelector.aspx\";document.fdata.submit();'");
         }
@@ -170,7 +184,13 @@ browser.webRequest.onHeadersReceived.addListener(
         "https://olt.toshin.com/OLT/Student4_R/Student/OALT_Test.aspx",
         "https://olt.toshin.com/OLT/Student4_R/Student/OACT_Test.aspx*",
         "https://olt.toshin.com/OLT/Student4_R/Student/OALT_OALTConfirmation.aspx*",
-        "https://olt.toshin.com/OLT/Student4_R/Student/OACT_OACTConfirmation.aspx*"
+        "https://olt.toshin.com/OLT/Student4_R/Student/OACT_OACTConfirmation.aspx*",
+        "https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/EnshuRireki.js*",
+        "https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/KekkaShosai.js*",
+        "https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/ZentaiRireki.js*",
+        "https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/EnshuKaishi.js*",
+        "https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/MondaiKaitoInsatsu.js*",
+        "https://pos.toshin.com/OPSTTS/OPSTTS_Student/wwwroot/js/CommonHeader.js*"
     ]
 }, ["blocking", "responseHeaders"]
 );
